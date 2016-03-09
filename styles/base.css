@@ -1,6 +1,30 @@
 body {
-  padding: 1em;
+display: flex;
+flex-direction: column;
+font-family: 'Roboto', Arial, Helvetica, sans-serif;
+background-color: #256F5B;
+color: #3B1255;
+padding: 5%;
   }
+
+div.byline {
+  color: black;
+}
+
+nav ul {
+    display: flex;
+    background-color: #4B6F8B;
+    padding: 5%;
+}
+
+li {
+  margin: 5%;
+  list-style: none;
+}
+
+li a {
+  text-decoration: none;
+}
 
 main {
   margin: auto;
@@ -14,4 +38,9 @@ address {
 hr {
   margin: 1em;
   width: 80%;
+}
+
+footer {
+  margin: 5%;
+  align-self: center;
 }

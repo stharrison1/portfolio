@@ -12,11 +12,11 @@ function Project(opts) {
 Project.prototype.toHtml = function() {
   var $newProject = $('article.template').clone();
   $newProject.removeClass('template');
-  // if (!this.publishedOn) {
-  //   $newProject.addClass('draft');
-  // }
-  $newProject.attr('data-category', this.category);
-  // $newProject.data('category', this.category);
+  if (!this.publishedOn) {
+    $newProject.addClass('draft');
+  }
+  // $newProject.attr('data-category', this.category);
+  $newProject.data('category', this.category);
   $newProject.find('h1:first').text(this.title);
   $newProject.find('address a').attr('href', this.repoUrl);
   $newProject.find('.portfolio-body').html(this.body);
@@ -27,7 +27,7 @@ Project.prototype.toHtml = function() {
 
   $newProject.append('<hr>');
 
-  // $newProject.removeClass('template');
+
   return $newProject;
 };
 
