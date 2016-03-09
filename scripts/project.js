@@ -11,20 +11,22 @@ function Project(opts) {
 
 Project.prototype.toHtml = function() {
   var $newProject = $('article.template').clone();
-  $newProject.attr('data-category', this.category);
-  $newProject.find('h1').html(this.title);
+  $newProject.removeClass('template');
+  if (!this.publishedOn) {
+    $newProject.addClass('draft');
+  }
+  // $newProject.attr('data-category', this.category);
+  $newProject.data('category', this.category);
+  $newProject.find('h1:first').text(this.title);
   $newProject.find('address a').attr('href', this.repoUrl);
   $newProject.find('.portfolio-body').html(this.body);
-
-  $newProject.find('time[pubdate]').attr('title', this.publishedOn)
+  $newProject.find('time[pubdate]').attr('datetime', this.publishedOn);
+  $newProject.find('time[pubdate]').attr('title', this.publishedOn);
 
   $newProject.find('time').html('about ' + parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000) + ' days ago');
 
-
   $newProject.append('<hr>');
 
-
-  $newProject.removeClass('template');
 
   return $newProject;
 };
