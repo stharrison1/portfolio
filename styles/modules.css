@@ -23,3 +23,8 @@
 .pull-right {
   float: right;
 }
+
+#filters select {
+  width: 100%;
+
+}
