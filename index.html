@@ -3,29 +3,34 @@
   <head>
     <meta charset="UTF-8">
     <title>Susan's Portfolio</title>
+    <meta name ="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="vendor/styles/normalize.css">
     <link rel="stylesheet" href="styles/icons.css">
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/modules.css">
+    <link rel="stylesheet" href="styles/layout.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
   </head>
   <body>
     <main>
-        <header class="site-header">
+        <header class="site-header clearfix">
+          <section class="heading-group-h1">
           <h1>
             Susan's Portfolio
           </h1>
-        </header>
+      </section>
         <nav class="main-nav">
+          <span class="icon-user"></span>
           <ul>
-            <li class="tab icon-home3"><a href="#">Home</a></li>
-            <li class="tab icon-rocket"><a href="">About</a></li>
+            <li class="tab icon-home3" data-content="portfolio"><a href="#">Home</a></li>
+            <li class="tab icon-rocket" data-content="about"><a href="#">About</a></li>
             <li class="icon-twitter"><a href="https://twitter.com/stharrison1">Twitter</a></li>
             <li class="icon-linkedin"><a href="https://www.linkedin.com/in/susan-harrison-42590863
 ">Linkedin</a></li>
             <li class="icon-github"><a href="https://github.com/stharrison1">Git Hub</a></li>
           </ul>
         </nav>
+      </header>
       <main>
         <section id="portfolio" class="tab-content">
           <div>

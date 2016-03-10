@@ -15,8 +15,8 @@ Project.prototype.toHtml = function() {
   if (!this.publishedOn) {
     $newProject.addClass('draft');
   }
-  // $newProject.attr('data-category', this.category);
-  $newProject.data('category', this.category);
+  $newProject.attr('data-category', this.category);
+  // $newProject.data('category', this.category);
   $newProject.find('h1:first').text(this.title);
   $newProject.find('address a').attr('href', this.repoUrl);
   $newProject.find('.portfolio-body').html(this.body);

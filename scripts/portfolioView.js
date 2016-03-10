@@ -3,11 +3,8 @@ var portfolioView = {};
 portfolioView.populateFilters = function() {
   $('article').each(function() {
     if (!$(this).hasClass('template')) {
-      var val = $(this).find('address a').text();
+      var val = $(this).attr('data-category');
       var optionTag = '<option value="' + val + '">' + val + '</option>';
-      $('#category-filter').append(optionTag);
-      val = $(this).attr('data-category');
-      optionTag = '<option value="' + val + '">' + val + '</option>';
       if ($('#category-filter option[value="' + val + '"]').length === 0) {
         $('#category-filter').append(optionTag);
       }
@@ -18,9 +15,7 @@ portfolioView.populateFilters = function() {
 portfolioView.handleCategoryFilter = function() {
   $('#category-filter').on('change', function() {
     if ($(this).val()) {
-    // if (projectData.category){
       $('article').hide();
-      // $('article[data-category="' + projectData.category + '"]').fadeIn();
       $('article[data-category="' + $(this).val() + '"]').fadeIn();
     } else {
       $('article').fadeIn(); //fadeOut ????
@@ -48,7 +43,6 @@ portfolioView.setTeasers = function() {
 };
 
 $(document).ready(function() {
-  //do something
   portfolioView.populateFilters();
   // portfolioView.handleAuthorFilter();
   portfolioView.handleCategoryFilter();
