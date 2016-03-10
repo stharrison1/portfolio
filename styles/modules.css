@@ -55,7 +55,8 @@ max-width: 400px;
   text-decoration: none;
 }
 
-@media only screen and (min-width: 635px) {
+@media only screen and (min-width: 635px),
+        only screen and (min-width: 600px) and (orientation: landscape) {
   .icon-user {
     display: none;
   }
