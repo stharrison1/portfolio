@@ -42,4 +42,6 @@
 .icon-linkedin:before {
     content: "\e904";
 }
-
+.icon-menu:before {
+    content: "\e906";
+}
