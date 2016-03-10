@@ -4,12 +4,25 @@
     <meta charset="UTF-8">
     <title>Susan's Portfolio</title>
     <meta name ="viewport" content="width=device-width, initial-scale=1">
+        <!-- SMACSS -->
     <link rel="stylesheet" href="vendor/styles/normalize.css">
     <link rel="stylesheet" href="styles/icons.css">
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/modules.css">
     <link rel="stylesheet" href="styles/layout.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <!-- POPULATES PROJECTDATA SECTION -->
+    <script id="projectData-template" type="text/x-handlebars-template">
+      <article data-category="{{category}}">
+        <h1>{{{title}}}</h1>
+        <div class="byline">
+          <address><a href="{{repoUrl}}">{{repoUrl}}</a></address>
+          <p>By: Susan Harrison {{publishStatus}}.</p>
+        </div>
+        <section class="project_body">{{{body}}}</section>
+        <a href="#" class="read_on">Read on &rarr;</a>
+      </article>
+    </script>
   </head>
   <body>
     <main>
@@ -19,8 +32,9 @@
             Susan's Portfolio
           </h1>
       </section>
+        <!-- NAV BAR -->
         <nav class="main-nav">
-          <span class="icon-user"></span>
+          <span class="icon-menu"></span>
           <ul>
             <li class="tab icon-home3" data-content="portfolio"><a href="#">Home</a></li>
             <li class="tab icon-rocket" data-content="about"><a href="#">About</a></li>
@@ -42,24 +56,11 @@
             </li>
           </ul>
         </div>
-
-          <article class="template" data-category="cat">
-            <header>
-              <h1>Projects</h1>
-              <div class="byline">
-                By <address><a href="">Susan Harrison</a></address>
-                published <time pubdate datetime="2000-01-01">Publish Time</time>
-              </div>
-            </header>
-            <section class="portfolio-body"></section>
-            <a href="#" class="read-on">Read on &rarr;</a>
-          </article>
-
         </section>
         <section id="about" class="tab_content">
-       <header>
+       <!-- <header>
          Welcome to my Portfolio
-       </header>
+       </header> -->
        <section>
          <h1>Some of my intrests:</h1>
          <ul>
@@ -69,10 +70,13 @@
          </ul>
        </section>
     </main>
+    <!-- FOOTER -->
     <footer>
       &copy; 2016 Code Fellows | Static Blog | Happy Coder!
     </footer>
+    <!-- SCRIPTS -->
     <script src="vendor/scripts/jquery-2.2.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
     <script src="scripts/projectData.js"></script>
     <script src="scripts/project.js"></script>
     <script src="scripts/portfolioView.js"></script>

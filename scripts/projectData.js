@@ -1,10 +1,10 @@
 var projectData = [
   {
     title:        'Guac-A-Mole Didactic Tool',
-    category:     'Didactic',
+    category:     'didactic',
     repoUrl:      'https://github.com/alexwuwei/Guac-A-Mole-Didactic-Tool',
     publishedOn:  '2016-01-29',
-    body:         'Here is info about Guac-A-Mole Tool' 
+    body:         'Here is info about Guac-A-Mole Tool'
   },
   {
     title:        'Bus Mall',

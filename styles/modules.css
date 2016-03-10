@@ -4,15 +4,13 @@ site-header {
 
 /* DONE: Float the main header to the left, to make room for the hamburger menu. */
 .heading-group-h1 {
-  float: left;
   padding: 0 0 .2em 1em;
 }
 
 /* : Add styles for the icon-menu class. It should be bigger, and off to the right. */
-.icon-user {
+.icon-menu {
 font-size: 3em;
 float: right;
-max-width: 400px;
 }
 
 .main-nav {
@@ -53,20 +51,31 @@ max-width: 400px;
 .byline a {
   font-weight: bold;
   text-decoration: none;
+  color: white;
+}
+a.read_on {
+  color: #046AA1;
 }
 
 @media only screen and (min-width: 635px),
         only screen and (min-width: 600px) and (orientation: landscape) {
-  .icon-user {
+  .icon-menu {
     display: none;
   }
+
+  .main-nav {
+    padding: .2em .2em .2em 2em;
+  }
+
   .main-nav ul {
     display: block;
-    text-align: center;
   }
-  .main-nav li {
-    display: inline-block;
-    margin-left: 10px;
-    margin-right: 10px;
+
+  .main-nav ul li {
+    display: inline;
+    border-bottom: none;
   }
-}
+
+  .main-nav ul li:hover a {
+    color: #29506D;
+  }
