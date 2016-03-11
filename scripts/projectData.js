@@ -14,7 +14,7 @@ var projectData = [
     body:         'Here is info about Bus Mall'
   },
   {
-    title:        'Campire Coffee',
+    title:        'Campfire Coffee',
     category:     'e-commerce',
     repoUrl:      'https://github.com/sharrison77/campfire-coffee',
     publishedOn:  '2016-01-15',
