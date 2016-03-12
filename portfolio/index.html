@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Susan's Portfolio</title>
+    <meta name ="viewport" content="width=device-width, initial-scale=1">
+        <!-- SMACSS -->
+    <link rel="stylesheet" href="vendor/styles/normalize.css">
+    <link rel="stylesheet" href="styles/icons.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/modules.css">
+    <link rel="stylesheet" href="styles/layout.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <!-- POPULATES PROJECTDATA SECTION -->
+    <script id="projectData-template" type="text/x-handlebars-template">
+      <article data-category="{{category}}">
+        <!-- <address><a href="{{repoUrl}}">{{repoUrl}}</a></address> -->
+        <h1>{{{title}}}</h1>
+        <div class="byline">
+          <address><a href="{{repoUrl}}">{{repoUrl}}</a></address>
+          <p>By: Susan Harrison {{publishStatus}}.</p>
+        </div>
+        <section class="project_body">{{{body}}}</section>
+        <a href="#" class="read_on">Read on &rarr;</a>
+      </article>
+    </script>
+  </head>
+  <body>
+    <main>
+        <header class="site-header clearfix">
+          <section class="heading-group-h1">
+          <h1>
+            Susan's Portfolio
+          </h1>
+      </section>
+        <!-- NAV BAR -->
+        <nav class="main-nav">
+          <span class="icon-menu"></span>
+          <ul>
+            <li class="tab icon-home3" data-content="portfolio"><a href="#">Home</a></li>
+            <li class="tab icon-rocket" data-content="about"><a href="#">About</a></li>
+            <li class="icon-twitter"><a href="https://twitter.com/stharrison1">Twitter</a></li>
+            <li class="icon-linkedin"><a href="https://www.linkedin.com/in/susan-harrison-42590863">Linkedin</a></li>
+            <li class="icon-github"><a href="https://github.com/stharrison1">Git Hub</a></li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <section id="portfolio" class="tab-content">
+          <div>
+          <ul id="filters">
+            <li>
+              <select id="category-filter">
+                <option value="">-- Filter by Categories --</option>
+              </select>
+            </li>
+          </ul>
+        </div>
+        </section>
+        <section id="about" class="tab_content">
+       <!-- <header>
+         Welcome to my Portfolio
+       </header> -->
+       <section>
+         <h1>Some of my intrests:</h1>
+         <ul>
+           <li>Coding</li>
+           <li>Sharing what I've learned</li>
+           <li>Hanging with my Famiily</li>
+         </ul>
+       </section>
+    </main>
+    <!-- FOOTER -->
+    <footer>
+      &copy; 2016 Code Fellows | Static Blog | Happy Coder!
+    </footer>
+    <!-- SCRIPTS -->
+    <script src="vendor/scripts/jquery-2.2.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
+    <script src="scripts/projectData.js"></script>
+    <script src="scripts/project.js"></script>
+    <script src="scripts/portfolioView.js"></script>
+    <script>
+      articleView.initIndexPage()
+    </script>
+
+  </body>
+</html>
