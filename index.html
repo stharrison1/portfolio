@@ -14,6 +14,7 @@
     <!-- POPULATES PROJECTDATA SECTION -->
     <script id="projectData-template" type="text/x-handlebars-template">
       <article data-category="{{category}}">
+        <!-- <address><a href="{{repoUrl}}">{{repoUrl}}</a></address> -->
         <h1>{{{title}}}</h1>
         <div class="byline">
           <address><a href="{{repoUrl}}">{{repoUrl}}</a></address>
@@ -79,5 +80,9 @@
     <script src="scripts/projectData.js"></script>
     <script src="scripts/project.js"></script>
     <script src="scripts/portfolioView.js"></script>
+    <script>
+      articleView.initIndexPage()
+    </script>
+
   </body>
 </html>
