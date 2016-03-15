@@ -18,7 +18,7 @@ portfolioView.handleCategoryFilter = function() {
       $('article').hide();
       $('article[data-category="' + $(this).val() + '"]').fadeIn();
     } else {
-      $('article').fadeIn(); //fadeOut ????
+      $('article').fadeIn();
       $('.template').hide();
     }
   });
@@ -42,7 +42,7 @@ portfolioView.setTeasers = function() {
   });
 };
 
-portfolioView.initNewArticlePage = function() {
+portfolioView.initNewProjectPage = function() {
   $('.tab-content').show();
   $('#export-field').hide();
   $('article-json').on('focus', function() {
@@ -54,10 +54,10 @@ portfolioView.initNewArticlePage = function() {
 portfolioView.create = function() {
   var article;
   $('#articles').empty();
-  article = new Project({
+  article = new Projects({
     title: $('#article-title').val(),
     body: $('#article-body').val(),
-    // author: $('#article-author').val(),
+    authorUrl: $('#article-author').val(),
     repoUrl: $('#article-author-url').val(),
     category: $('#article-category').val(),
     publishedOn: $('#article-published:checked').length ? new Date() :null
@@ -70,8 +70,10 @@ portfolioView.create = function() {
   $('#article-json').val(JSON.stringify(article));
 };
 
-
 portfolioView.initIndexPage = function() {
+  Projects.all.forEach(function(a){
+    $('#portfolio').append(a.toHtml());
+  });
   portfolioView.populateFilters();
   portfolioView.handleCategoryFilter();
   portfolioView.handleMainNav();
