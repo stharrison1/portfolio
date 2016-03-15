@@ -13,13 +13,19 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <!-- POPULATES PROJECTDATA SECTION -->
     <script id="projectData-template" type="text/x-handlebars-template">
-      <article data-category="{{category}}">
+      <!-- <article data-category="{{category}}"> -->
+      <article class="clearfix" data-author="{{author}}" data-category="{{category}}">
         <!-- <address><a href="{{repoUrl}}">{{repoUrl}}</a></address> -->
-        <h1>{{{title}}}</h1>
+        <header>
+        <h1><address><a href="{{titleUrl}}">{{title}}</a></address></h1>
         <div class="byline">
-          <address><a href="{{repoUrl}}">{{repoUrl}}</a></address>
+        By <address><a href="{{authorUrl}}">{{author}}</a></address>
+        {{publishStatus}}
+      </div>
+          <!-- <address><a href="{{repoUrl}}">{{repoUrl}}</a></address>
           <p>By: Susan Harrison {{publishStatus}}.</p>
-        </div>
+        </div> -->
+      </header>
         <section class="project_body">{{{body}}}</section>
         <a href="#" class="read_on">Read on &rarr;</a>
       </article>
@@ -77,12 +83,15 @@
     <!-- SCRIPTS -->
     <script src="vendor/scripts/jquery-2.2.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
-    <script src="scripts/projectData.js"></script>
+    <script src="vendor/scripts/marked.js"></script>
     <script src="scripts/project.js"></script>
     <script src="scripts/portfolioView.js"></script>
     <script>
-      portfolioView.initIndexPage()
+      portfolioView.initNewProjectPage();
     </script>
+    <script>
+        Projects.fetchAll();
+      </script>
 
   </body>
 </html>
