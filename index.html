@@ -13,18 +13,13 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <!-- POPULATES PROJECTDATA SECTION -->
     <script id="projectData-template" type="text/x-handlebars-template">
-      <!-- <article data-category="{{category}}"> -->
       <article class="clearfix" data-author="{{author}}" data-category="{{category}}">
         <!-- <address><a href="{{repoUrl}}">{{repoUrl}}</a></address> -->
         <header>
         <h1><address><a href="{{titleUrl}}">{{title}}</a></address></h1>
         <div class="byline">
-        By <address><a href="{{authorUrl}}">{{author}}</a></address>
-        {{publishStatus}}
+          <section class="author">By:{{author}} {{publishStatus}}</section>
       </div>
-          <!-- <address><a href="{{repoUrl}}">{{repoUrl}}</a></address>
-          <p>By: Susan Harrison {{publishStatus}}.</p>
-        </div> -->
       </header>
         <section class="project_body">{{{body}}}</section>
         <a href="#" class="read_on">Read on &rarr;</a>
@@ -64,9 +59,6 @@
         </div>
         </section>
         <section id="about" class="tab_content">
-       <!-- <header>
-         Welcome to my Portfolio
-       </header> -->
        <section>
          <h1>Some of my intrests:</h1>
          <ul>
@@ -87,11 +79,8 @@
     <script src="scripts/project.js"></script>
     <script src="scripts/portfolioView.js"></script>
     <script>
-      portfolioView.initNewProjectPage();
+    Projects.fetchAll(portfolioView.initIndexPage);
     </script>
-    <script>
-        Projects.fetchAll();
-      </script>
 
   </body>
 </html>
