@@ -1,18 +1,18 @@
 (function(module){
-  var portfolioView = {};
+  var portfolioView = {};//empty object gets functions from below passed in it
 
+//added category from ProjectData to OptionTag filter
   portfolioView.populateFilters = function() {
-    $('article').each(function() {
-      if (!$(this).hasClass('template')) {
-        var val = $(this).attr('data-category');
-        var optionTag = '<option value="' + val + '">' + val + '</option>';
-        if ($('#category-filter option[value="' + val + '"]').length === 0) {
-          $('#category-filter').append(optionTag);
-        }
+    $('article').each(function() {//index 16-26
+      var val = $(this).attr('data-category');//index 16
+      var optionTag = '<option value="' + val + '">' + val + '</option>';
+      if ($('#category-filter option[value="' + val + '"]').length === 0) {
+        $('#category-filter').append(optionTag);
       }
     });
   };
 
+//Filters category-filter when user changes category
   portfolioView.handleCategoryFilter = function() {
     $('#category-filter').on('change', function() {
       if ($(this).val()) {
@@ -25,72 +25,83 @@
     });
   };
 
+//Hides all content and then fades in only content that is clicked on
   portfolioView.handleMainNav = function () {
-    $('.main-nav').on('click', '.tab', function () {
+    $('.main-nav').on('click', '.tab', function () { //index 41-42
       $('.tab-content').hide();
       $('#' + $(this).data('content')).fadeIn();
     });
-    $('.main-nav .tab:first').click();
+    $('.main-nav .tab:first').click();//Page loads on Home
   };
 
+//Shows only 1st two paragraphs of body
   portfolioView.setTeasers = function() {
     $('.project-body *:nth-of-type(n+2)').hide();
-
-    $('#projects a.read_on').on('click', function(event) {
+//if read_on clicked show content
+    $('#projects a.read_on').on('click', function(event){ //index 25
       event.preventDefault();
       $(this).hide();
       $(this).parent().find('*').show();
     });
   };
 
+//Function called in new.html-86
+//It does things that initilizes the initIndexPage
   portfolioView.initNewProjectPage = function() {
     $('.tab-content').show();
     $('#export-field').hide();
-    $('article-json').on('focus', function() {
-      this.slect();
+    $('project-json').on('focus', function() {
+      this.select();
     });
-    $('#new-form').on('change', 'input', 'textarea', portfolioView.create);
+    $('#new-form').on('change', 'input', 'textarea', portfolioView.create); //This is callback function that is passed to jQuery. jQuery will call it when jQuery call that event happens
   };
 
+//Creates new objects
   portfolioView.create = function() {
-    var article;
-    $('#articles').empty();
-    article = new Projects({
-      title: $('#article-title').val(),
-      body: $('#article-body').val(),
-      authorUrl: $('#article-author').val(),
-      repoUrl: $('#article-author-url').val(),
-      category: $('#article-category').val(),
-      publishedOn: $('#article-published:checked').length ? new Date() :null
+    var project;
+    $('#projects').empty();
+    project = new Project({
+      title: $('#project-title').val(),
+      titleUrl: $('#project').val(),
+      body: $('#project-body').val(),
+      authorUrl: $('#project-author').val(),
+      repoUrl: $('#project-title-url').val(),
+      category: $('#project-category').val(),
+      publishedOn: $('#project-published:checked').length ? new Date() :null
     });
-    $('#articles').append(article.toHtml());
-    $('#articles').each(function(i, block){
+    $('#projects').append(project.toHtml());
+    $('pre code').each(function(i, block){
       hljs.highlightBlock(block);
     });
     $('#export-field').show();
-    $('#article-json').val(JSON.stringify(article));
+    $('#project-json').val(JSON.stringify(project)+ ',');
   };
 
+//Function called in index.html-82
+//Shows all the functions on the index.html page
   portfolioView.initIndexPage = function() {
-    Projects.all.forEach(function(a){
+    Project.all.forEach(function(a){
       $('#portfolio').append(a.toHtml());
     });
+
     portfolioView.populateFilters();
     portfolioView.handleCategoryFilter();
     portfolioView.handleMainNav();
     portfolioView.setTeasers();
-    Projects.allAuthors();
-    Projects.numWordsByAuthor();
+    Project.allAuthors();
+    Project.numWordsByAuthor();
+
   };
 
+//Function called in new.html-56
   portfolioView.initAdminPage = function() {
     var template = Handlebars.compile($('#projectData-template').text());
-    Projects.numWordsByAuthor().forEach(function(stat) {
+    Project.numWordsByAuthor().forEach(function(stat) {
       $('.author-stats').append(template(stat));
     });
 
-    $('#blog-stats .articles').text(Projects.all.length);
-    $('#blog-stats .words').text(Projects.numWordsAll());
+    $('#blog-stats .projects').text(Project.all.length);
+    $('#blog-stats .words').text(Project.numWordsAll());
   };
 
   module.portfolioView = portfolioView;

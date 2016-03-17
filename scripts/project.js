@@ -1,86 +1,99 @@
 (function(module) {
-  function Projects(opts) {
-    for (key in opts) this[key] = opts[key];
-  }
+  //ALL properties of `opts` will be assigned as properies of the newly created article object.
+  function Project(opts) {
+    Object.keys(opts).forEach(function(e, index, key){
+      this[e] = opts[e];
+    },this);
+  };
 
-  Projects.all = [];
+  Project.all = []; //when .toHtml is called all projectData will be pushed into this array
 
-  Projects.prototype.toHtml = function() {
+
+//We define and use the method toHTML for the Project class. It returns an instance of the constructor
+  Project.prototype.toHtml = function() {
+    //called on portfolioView-71 and 81
     var template = Handlebars.compile($('#projectData-template').text());
     this.daysAgo = parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000);
     this.publishStatus = this.publishedOn ? 'published ' + this.daysAgo + ' days ago' : '(draft)';
-    // this.body = marked(this.body); WHY DOESN'T THIS WORK?
+    // this.body = marked(this.body);
+    //WHY DOESN'T THIS WORK?
     return template(this);
   };
 
-  Projects.loadAll = function(rawData) {
-    rawData.sort(function(a,b){
+//loadAll function collects all projectData and sorts .map puts this in a new sorted Array
+  Project.loadAll = function(data) {
+    data.sort(function(a,b){
       return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
     });
-    Projects.all = rawData.map(function(ele) {
-      return new Projects(ele);
+    Project.all = data.map(function(ele) {
+      return new Project(ele);
     });
   };
 
-  Projects.fetchAll = function(p) {
+//Sets localStorage to during eTag
+  Project.fetchAll = function(callback) {
     $.ajax({
-      type: 'HEAD',
+      type: 'HEAD',//just want header
       url: 'scripts/projectData.json',
       success: function(data, message, xhr) {
-        var localEtag = xhr.getResponseHeader('eTag');
-        localStorage.setItem('eTag', localEtag);
-        if (localStorage.eTag === xhr.getResponseHeader('eTag') && localStorage.rawData) {
+        var dataEtag = xhr.getResponseHeader('eTag');
+        if (localStorage.eTag === dataEtag && localStorage.data) {
           console.log(localStorage.eTag);
-          Projects.loadAll(JSON.parse(localStorage.rawData));
-          p();
+          Project.loadAll(JSON.parse(localStorage.data));//parse so that Javascript can understand
+          callback();
         } else {
-          $.getJSON('scripts/projectData.json', function(rawData) {
-            Projects.loadAll(rawData);
-            localStorage.rawData = JSON.stringify(rawData);
-            p();
+          localStorage.eTag = dataEtag;
+          $.getJSON('scripts/projectData.json', function(data) {
+            Project.loadAll(data);
+            localStorage.data = JSON.stringify(data);
+            callback();
           });
         }
       }
     });
   };
 
-  Projects.numWordsAll = function() {
-    return Projects.all.map(function(article) {
-      return article.body.match(/\b\w+/g).length;
+//numWordsAll function returns all the words in the projectData body
+  Project.numWordsAll = function() {
+    return Project.all.map(function(project) {
+      return project.body.match(/\b\w+/g).length;
+      //need rexpress explanation
     })
     .reduce(function(a, b) {
-      return a+=b;
+      return a + b;
     });
   };
 
 
-  Projects.allAuthors = function() {
-    return Projects.all.map(function(article){
-      return article.author;
+//allAuthors function returns the names of all authors without duplicates and pushes to new array
+  Project.allAuthors = function() {
+    return Project.all.map(function(project){
+      return project.author;
     })
       .reduce(function(acc,cur){
-
-        if (acc.indexOf(cur)<0)acc.push(cur);
+        if (acc.indexOf(cur) === -1){
+          acc.push(cur);
+        }
         return acc;
-
       },[]);
   };
 
-  Projects.numWordsByAuthor = function() {
-    return Projects.allAuthors().map(function(author) {
+//numWordsByAuthor function returns all prodect words per author
+  Project.numWordsByAuthor = function() {
+    return Project.allAuthors().map(function(author) {
       return {
         name:author,
-        numWords: Projects.all.filter(function(article){
-          return article.author == author;
+        numWords: Project.all.filter(function(project){
+          return project.author == author;
         })
-        .map(function(article) {
-          return article.body.match(/\b\w+/g).length;
+        .map(function(project) {
+          return project.body.match(/\b\w+/g).length;
         })
         .reduce(function(a, b) {
-          return a+=b;
+          return a + b;
         })
       };
     });
   };
-  module.Projects = Projects;
+  module.Project = Project;
 })(window);

@@ -1,6 +1,6 @@
 [{
 	"title": "Guac-A-Mole Didactic Tool",
-	"titleUrl": "#",
+	"titleUrl": "https://alexwuwei.github.io/Guac-A-Mole-Didactic-Tool/welcome.html",
 	"category": "didactic",
 	"author":	"Hugo, Susan, Ron, Gurpreet",
 	"repoUrl": "https://github.com/alexwuwei/Guac-A-Mole-Didactic-Tool",
@@ -8,7 +8,7 @@
 	"body": "Here is info about Guac-A-Mole Tool"
 }, {
 	"title": "Bus Mall",
-	"titleUrl": "#",
+	"titleUrl": "http://stharrison1.github.io/Bus-Mall",
 	"category": "e-commerce",
 	"author": "Susan Harrison",
 	"repoUrl": "https://github.com/sharrison77/Bus-Mall",
@@ -16,7 +16,7 @@
 	"body": "Here is info about Bus Mall"
 }, {
 	"title": "Campfire Coffee",
-	"titleUrl": "#",
+	"titleUrl": "http://stharrison1.github.io/campfire-coffee",
 	"category": "e-commerce",
 	"author": "Susan Harrison",
 	"repoUrl": "https://github.com/sharrison77/campfire-coffee",

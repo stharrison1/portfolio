@@ -14,11 +14,11 @@
     <!-- POPULATES PROJECTDATA SECTION -->
     <script id="projectData-template" type="text/x-handlebars-template">
       <article class="clearfix" data-author="{{author}}" data-category="{{category}}">
-        <!-- <address><a href="{{repoUrl}}">{{repoUrl}}</a></address> -->
         <header>
         <h1><address><a href="{{titleUrl}}">{{title}}</a></address></h1>
         <div class="byline">
-          <section class="author">By:{{author}} {{publishStatus}}</section>
+          <address><a href="{{repoUrl}}">{{repoUrl}}</a></address>
+          <section class="author">By: {{author}} {{publishStatus}}</section>
       </div>
       </header>
         <section class="project_body">{{{body}}}</section>
@@ -79,7 +79,7 @@
     <script src="scripts/project.js"></script>
     <script src="scripts/portfolioView.js"></script>
     <script>
-    Projects.fetchAll(portfolioView.initIndexPage);
+    Project.fetchAll(portfolioView.initIndexPage);
     </script>
 
   </body>
