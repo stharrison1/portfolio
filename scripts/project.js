@@ -1,7 +1,7 @@
 (function(module) {
-  //ALL properties of `opts` will be assigned as properies of the newly created article object.
+  //ALL properties of `opts` will be assigned as properies of the newly created project object.
   function Project(opts) {
-    Object.keys(opts).forEach(function(e, index, key){
+    Object.keys(opts).forEach(function(e, index, key){ //please expain?
       this[e] = opts[e];
     },this);
   };
@@ -9,7 +9,7 @@
   Project.all = []; //when .toHtml is called all projectData will be pushed into this array
 
 
-//We define and use the method toHTML for the Project class. It returns an instance of the constructor
+//We define and use the method toHTML for the Project class.
   Project.prototype.toHtml = function() {
     //called on portfolioView-71 and 81
     var template = Handlebars.compile($('#projectData-template').text());

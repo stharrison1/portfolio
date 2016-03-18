@@ -99,9 +99,8 @@
     Project.numWordsByAuthor().forEach(function(stat) {
       $('.author-stats').append(template(stat));
     });
-
-    $('#blog-stats .projects').text(Project.all.length);
-    $('#blog-stats .words').text(Project.numWordsAll());
+    $('#projects-stats .projects').text(Project.all.length);
+    $('#projects-stats .words').text(Project.numWordsAll());
   };
 
   module.portfolioView = portfolioView;
