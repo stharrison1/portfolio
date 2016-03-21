@@ -5,12 +5,12 @@
     <title>Susan's Portfolio</title>
     <meta name ="viewport" content="width=device-width, initial-scale=1">
         <!-- SMACSS -->
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="vendor/styles/normalize.css">
     <link rel="stylesheet" href="styles/icons.css">
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/modules.css">
     <link rel="stylesheet" href="styles/layout.css">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <!-- POPULATES PROJECTDATA SECTION -->
     <script id="projectData-template" type="text/x-handlebars-template">
       <article class="clearfix" data-author="{{author}}" data-category="{{category}}">
@@ -21,33 +21,29 @@
           <section class="author">By: {{author}} {{publishStatus}}</section>
       </div>
       </header>
-        <section class="project_body">{{{body}}}</section>
-        <a href="#" class="read_on">Read on &rarr;</a>
+        <section class="project-body">{{{body}}}</section>
+        <a href="#" class="read-on">Read on &rarr;</a>
       </article>
     </script>
   </head>
   <body>
     <main>
       <!-- LOGO SECTION -->
-  <section class="logo-section">
-    <div class="top">
-      <a href="#"><img class="logo" src="img/susanlogo.png"/></a>
-    </div>
-    <article class="website-title">
-      <a class="susanlink" href="#"><h1 class="susanharrison">SUSAN HARRISON</h1></a>
-    </article>
-    <aside class="social-aside">
-      <li class="icon-twitter"><a href="https://twitter.com/stharrison1">Twitter</a></li>
-      <li class="icon-linkedin"><a href="https://www.linkedin.com/in/susan-harrison-42590863">Linkedin</a></li>
-      <li class="icon-github"><a href="https://github.com/stharrison1">Git Hub</a></li>
-    </aside>
-        <!-- <header class="site-header clearfix">
-          <section class="heading-group-h1">
-          <h1>
-            Susan's Portfolio
-          </h1>
-      </section> -->
-        <!-- NAV BAR -->
+    <section class="logo-section">
+      <div class="top">
+        <a href="#"><img class="logo" src="img/susanlogo.png"/></a>
+      </div>
+      <article class="website-title">
+        <a class="susanlink" href="#"><h1 class="susanharrison">SUSAN HARRISON</h1></a>
+      </article>
+      <aside class="social-aside">
+        <ul>
+          <li class="icon-twitter"><a href="https://twitter.com/stharrison1">Twitter</a></li>
+          <li class="icon-linkedin"><a href="https://www.linkedin.com/in/susan-harrison-42590863">Linkedin</a></li>
+          <li class="icon-github"><a href="https://github.com/stharrison1">Git Hub</a></li>
+        </ul>
+      </aside>
+    </section>
         <nav class="main-nav">
           <span class="icon-menu"></span>
           <ul>

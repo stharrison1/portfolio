@@ -37,8 +37,8 @@
 //Shows only 1st two paragraphs of body
   portfolioView.setTeasers = function() {
     $('.project-body *:nth-of-type(n+2)').hide();
-//if read_on clicked show content
-    $('#projects a.read_on').on('click', function(event){ //index 25
+//if read-on clicked show content
+    $('#projects a.read-on').on('click', function(event){ //index 25
       event.preventDefault();
       $(this).hide();
       $(this).parent().find('*').show();
