@@ -5,11 +5,11 @@
     <title>Susan's Portfolio</title>
     <meta name ="viewport" content="width=device-width, initial-scale=1">
         <!-- SMACSS -->
-    <link rel="stylesheet" href="vendor/styles/normalize.css">
-    <link rel="stylesheet" href="styles/icons.css">
-    <link rel="stylesheet" href="styles/base.css">
-    <link rel="stylesheet" href="styles/modules.css">
-    <link rel="stylesheet" href="styles/layout.css">
+    <link rel="stylesheet" href="/vendor/styles/normalize.css">
+    <link rel="stylesheet" href="/styles/icons.css">
+    <link rel="stylesheet" href="/styles/base.css">
+    <link rel="stylesheet" href="/styles/modules.css">
+    <link rel="stylesheet" href="/styles/layout.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <!-- POPULATES PROJECTDATA SECTION -->
     <script id="projectData-template" type="text/x-handlebars-template">
@@ -24,6 +24,18 @@
         <section class="project_body">{{{body}}}</section>
         <a href="#" class="read_on">Read on &rarr;</a>
       </article>
+    </script>
+    <script id="project-template" type="text/x-handlebars-template">
+      <li>
+        <a href="{{html_url}}" target="_blank"><h3>{{name}}</h3></a>
+        <p>Description: {{description}}</p>
+        <p>Language: {{language}}</p>
+        <p>Created: {{created_at}}</p>
+        <p>Last updated: {{updated_at}}</p>
+        {{#if watchers_count}}
+          <p>{{watchers_count}} watching this repo</p>
+        {{/if}}
+      </li>
     </script>
   </head>
   <body>
@@ -75,15 +87,20 @@
       &copy; 2016 Code Fellows | Static Blog | Happy Coder!
     </footer>
     <!-- SCRIPTS -->
-    <script src="vendor/scripts/jquery-2.1.4.js"></script>
-    <script src="vendor/scripts/handlebars.js"></script>
-    <script src="vendor/scripts/marked.js"></script>
-    <script src="vendor/scripts/page.js"></script>
+    <script src="/vendor/scripts/jquery-2.1.4.js"></script>
+    <script src="/vendor/scripts/handlebars.js"></script>
+    <script src="/vendor/scripts/marked.js"></script>
+    <script src="/vendor/scripts/page.js"></script>
 
-    <script src="scripts/project.js"></script>
-    <script src="scripts/portfolioView.js"></script>
+    <script src="/scripts/githubToken.js"></script>
+    <script src="/scripts/project.js"></script>
+    <script src="/scripts/portfolioView.js"></script>
     <script src="/scripts/projectsController.js"></script>
+
+    <script src ="/scripts/repo.js"></script>
+    <script src ="/scripts/repoView.js"></script>
     <script src="/scripts/aboutController.js"></script>
+
     <script src="/scripts/routes.js"></script>
 
   </body>
