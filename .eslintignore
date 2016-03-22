@@ -1,6 +1,4 @@
 README.md
-vendor/jquery-2.2.1.js
-.DS_Store
-.eslintrc
-.eslintignore
-LICENSE
+vendor/*
+img/*
+readme.md

@@ -5,43 +5,50 @@
     <title>Susan's Portfolio</title>
     <meta name ="viewport" content="width=device-width, initial-scale=1">
         <!-- SMACSS -->
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="vendor/styles/normalize.css">
     <link rel="stylesheet" href="styles/icons.css">
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/modules.css">
     <link rel="stylesheet" href="styles/layout.css">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <!-- POPULATES PROJECTDATA SECTION -->
     <script id="projectData-template" type="text/x-handlebars-template">
-      <article data-category="{{category}}">
-        <!-- <address><a href="{{repoUrl}}">{{repoUrl}}</a></address> -->
-        <h1>{{{title}}}</h1>
+      <article class="clearfix" data-author="{{author}}" data-category="{{category}}">
+        <header>
+        <h1><address><a href="{{titleUrl}}">{{title}}</a></address></h1>
         <div class="byline">
           <address><a href="{{repoUrl}}">{{repoUrl}}</a></address>
-          <p>By: Susan Harrison {{publishStatus}}.</p>
-        </div>
-        <section class="project_body">{{{body}}}</section>
-        <a href="#" class="read_on">Read on &rarr;</a>
+          <section class="author">By: {{author}} {{publishStatus}}</section>
+      </div>
+      </header>
+        <section class="project-body">{{{body}}}</section>
+        <a href="#" class="read-on">Read on &rarr;</a>
       </article>
     </script>
   </head>
   <body>
     <main>
-        <header class="site-header clearfix">
-          <section class="heading-group-h1">
-          <h1>
-            Susan's Portfolio
-          </h1>
-      </section>
-        <!-- NAV BAR -->
+      <!-- LOGO SECTION -->
+    <section class="logo-section">
+      <div class="top">
+        <a href="#"><img class="logo" src="img/susanlogo.png"/></a>
+      </div>
+      <article class="website-title">
+        <a class="susanlink" href="#"><h1 class="susanharrison">SUSAN HARRISON</h1></a>
+      </article>
+      <aside class="social-aside">
+        <ul>
+          <li class="icon-twitter"><a href="https://twitter.com/stharrison1">Twitter</a></li>
+          <li class="icon-linkedin"><a href="https://www.linkedin.com/in/susan-harrison-42590863">Linkedin</a></li>
+          <li class="icon-github"><a href="https://github.com/stharrison1">Git Hub</a></li>
+        </ul>
+      </aside>
+    </section>
         <nav class="main-nav">
           <span class="icon-menu"></span>
           <ul>
             <li class="tab icon-home3" data-content="portfolio"><a href="#">Home</a></li>
             <li class="tab icon-rocket" data-content="about"><a href="#">About</a></li>
-            <li class="icon-twitter"><a href="https://twitter.com/stharrison1">Twitter</a></li>
-            <li class="icon-linkedin"><a href="https://www.linkedin.com/in/susan-harrison-42590863">Linkedin</a></li>
-            <li class="icon-github"><a href="https://github.com/stharrison1">Git Hub</a></li>
           </ul>
         </nav>
       </header>
@@ -58,9 +65,6 @@
         </div>
         </section>
         <section id="about" class="tab_content">
-       <!-- <header>
-         Welcome to my Portfolio
-       </header> -->
        <section>
          <h1>Some of my intrests:</h1>
          <ul>
@@ -77,11 +81,11 @@
     <!-- SCRIPTS -->
     <script src="vendor/scripts/jquery-2.2.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
-    <script src="scripts/projectData.js"></script>
+    <script src="vendor/scripts/marked.js"></script>
     <script src="scripts/project.js"></script>
     <script src="scripts/portfolioView.js"></script>
     <script>
-      portfolioView.initIndexPage()
+    Project.fetchAll(portfolioView.initIndexPage);
     </script>
 
   </body>
