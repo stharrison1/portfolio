@@ -4,20 +4,21 @@
   repos.all = [];
 
   repos.requestRepos = function(callback) {
-    $.ajax({
-      url: 'https://api.github.com/users/stharrison1/repos' + '?per_page=5&sort=updated',
-      type: 'GET',
-      headers: {
-        'Authorization' : 'token ' + githubToken
-      },
-      success: function(data, message, xhr){
-        console.log(data);
+    $.get('github/users/stharrison1/repos' +
+            '?per_page=100' +
+            '&sort=updated')
+      .done(function(data, message, xhr){
         repos.all = data;
-        callback();
-      }
-    });
-
+      })
+      .done(callback);
   };
+
+  repos.with = function(attr) {
+    return repos.all.filter(function(repo) {
+      return repo[attr];
+    });
+  };
+
 
   repos.with = function(attr) {
     return repos.all.filter(function(repo) {

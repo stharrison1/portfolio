@@ -4,8 +4,8 @@
   Project.fetchAll(portfolioView.initIndexPage);
 
   projectsController.index = function() {
-    $('.tab-content').hide();
-    $('#portfolio').fadeIn();
+    // $('.tab-content').hide();
+    // $('#portfolio').fadeIn();
 
   };
 
