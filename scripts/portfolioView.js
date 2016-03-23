@@ -26,13 +26,13 @@
   };
 
 //Hides all content and then fades in only content that is clicked on
-  portfolioView.handleMainNav = function () {
-    $('.main-nav').on('click', '.tab', function () { //index 41-42
-      $('.tab-content').hide();
-      $('#' + $(this).data('content')).fadeIn();
-    });
-    $('.main-nav .tab:first').click();//Page loads on Home
-  };
+  // portfolioView.handleMainNav = function () {
+  //   $('.main-nav').on('click', '.tab', function () { //index 41-42
+  //     $('.tab-content').hide();
+  //     $('#' + $(this).data('content')).fadeIn();
+  //   });
+  //   $('.main-nav .tab:first').click();//Page loads on Home
+  // };
 
 //Shows only 1st two paragraphs of body
   portfolioView.setTeasers = function() {
@@ -86,7 +86,7 @@
 
     portfolioView.populateFilters();
     portfolioView.handleCategoryFilter();
-    portfolioView.handleMainNav();
+    // portfolioView.handleMainNav();
     portfolioView.setTeasers();
     Project.allAuthors();
     Project.numWordsByAuthor();

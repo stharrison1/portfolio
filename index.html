@@ -5,7 +5,7 @@
     <title>Susan's Portfolio</title>
     <meta name ="viewport" content="width=device-width, initial-scale=1">
         <!-- SMACSS -->
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="vendor/styles/normalize.css">
     <link rel="stylesheet" href="styles/icons.css">
     <link rel="stylesheet" href="styles/base.css">
@@ -25,33 +25,42 @@
         <a href="#" class="read-on">Read on &rarr;</a>
       </article>
     </script>
+    <script id="project-template" type="text/x-handlebars-template">
+      <li>
+        <a href="{{html_url}}" target="_blank"><h3>{{name}}</h3></a>
+        <p>Description: {{description}}</p>
+        <p>Language: {{language}}</p>
+        <p>Created: {{created_at}}</p>
+        <p>Last updated: {{updated_at}}</p>
+        {{#if watchers_count}}
+          <p>{{watchers_count}} watching this repo</p>
+        {{/if}}
+      </li>
+    </script>
   </head>
   <body>
     <main>
       <!-- LOGO SECTION -->
+    <article class="website-title">
     <section class="logo-section">
       <div class="top">
-        <a href="#"><img class="logo" src="img/susanlogo.png"/></a>
+        <a href="#"><img class="logo"></a>
+        <!-- <a href="#"><img class="logo" src="img/susanlogo.png"/></a> -->
       </div>
-      <article class="website-title">
         <a class="susanlink" href="#"><h1 class="susanharrison">SUSAN HARRISON</h1></a>
       </article>
-      <aside class="social-aside">
-        <ul>
-          <li class="icon-twitter"><a href="https://twitter.com/stharrison1">Twitter</a></li>
-          <li class="icon-linkedin"><a href="https://www.linkedin.com/in/susan-harrison-42590863">Linkedin</a></li>
-          <li class="icon-github"><a href="https://github.com/stharrison1">Git Hub</a></li>
-        </ul>
-      </aside>
-    </section>
-        <nav class="main-nav">
-          <span class="icon-menu"></span>
-          <ul>
-            <li class="tab icon-home3" data-content="portfolio"><a href="#">Home</a></li>
-            <li class="tab icon-rocket" data-content="about"><a href="#">About</a></li>
-          </ul>
-        </nav>
-      </header>
+      <!-- NAV SECTION -->
+          <nav class="main-nav">
+            <span class="icon-menu"></span>
+            <ul>
+              <li class="tab icon-home3" data-content="portfolio"><a href="/">Home</a></li>
+              <li class="tab icon-rocket" data-content="about"><a href="/about">About</a></li>
+              <li class="icon-twitter"><a href="https://twitter.com/stharrison1">Twitter</a></li>
+              <li class="icon-linkedin"><a href="https://www.linkedin.com/in/susan-harrison-42590863">Linkedin</a></li>
+              <li class="icon-github"><a href="https://github.com/stharrison1">Git Hub</a></li>
+            </ul>
+          </nav>
+      </section>
       <main>
         <section id="portfolio" class="tab-content">
           <div>
@@ -64,7 +73,7 @@
           </ul>
         </div>
         </section>
-        <section id="about" class="tab_content">
+        <section id="about" class="tab-content">
        <section>
          <h1>Some of my intrests:</h1>
          <ul>
@@ -79,14 +88,21 @@
       &copy; 2016 Code Fellows | Static Blog | Happy Coder!
     </footer>
     <!-- SCRIPTS -->
-    <script src="vendor/scripts/jquery-2.2.1.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
-    <script src="vendor/scripts/marked.js"></script>
-    <script src="scripts/project.js"></script>
-    <script src="scripts/portfolioView.js"></script>
-    <script>
-    Project.fetchAll(portfolioView.initIndexPage);
-    </script>
+    <script src="/vendor/scripts/jquery-2.1.4.js"></script>
+    <script src="/vendor/scripts/handlebars.js"></script>
+    <script src="/vendor/scripts/marked.js"></script>
+    <script src="/vendor/scripts/page.js"></script>
+
+    <script src="/scripts/githubToken.js"></script>
+    <script src="/scripts/project.js"></script>
+    <script src="/scripts/portfolioView.js"></script>
+    <script src="/scripts/projectsController.js"></script>
+
+    <script src ="/scripts/repo.js"></script>
+    <script src ="/scripts/repoView.js"></script>
+    <script src="/scripts/aboutController.js"></script>
+
+    <script src="/scripts/routes.js"></script>
 
   </body>
 </html>

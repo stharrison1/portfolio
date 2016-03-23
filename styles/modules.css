@@ -1,7 +1,10 @@
 site-header {
   background: #FFEAAA;
 }
-
+.susanlink{
+  text-align: center;
+  text-decoration: none;
+}
 /* DONE: Float the main header to the left, to make room for the hamburger menu. */
 .heading-group-h1 {
   padding: 0 0 .2em 1em;

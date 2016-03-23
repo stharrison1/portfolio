@@ -1,0 +1,23 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "Personal Portofolio",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stharrison1/portfolio.git"
+  },
+  "author": "Susan Harrison",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stharrison1/portfolio/issues"
+  },
+  "homepage": "https://github.com/stharrison1/portfolio#readme",
+  "dependencies": {
+    "express": "^4.13.4",
+    "express-request-proxy": "^2.0.0"
+  }
+}

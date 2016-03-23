@@ -82,7 +82,7 @@
   Project.numWordsByAuthor = function() {
     return Project.allAuthors().map(function(author) {
       return {
-        name:author,
+        name: author,
         numWords: Project.all.filter(function(project){
           return project.author == author;
         })
