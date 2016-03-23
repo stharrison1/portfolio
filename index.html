@@ -5,12 +5,12 @@
     <title>Susan's Portfolio</title>
     <meta name ="viewport" content="width=device-width, initial-scale=1">
         <!-- SMACSS -->
-    <link rel="stylesheet" href="/vendor/styles/normalize.css">
-    <link rel="stylesheet" href="/styles/icons.css">
-    <link rel="stylesheet" href="/styles/base.css">
-    <link rel="stylesheet" href="/styles/modules.css">
-    <link rel="stylesheet" href="/styles/layout.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="vendor/styles/normalize.css">
+    <link rel="stylesheet" href="styles/icons.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/modules.css">
+    <link rel="stylesheet" href="styles/layout.css">
     <!-- POPULATES PROJECTDATA SECTION -->
     <script id="projectData-template" type="text/x-handlebars-template">
       <article class="clearfix" data-author="{{author}}" data-category="{{category}}">
@@ -21,8 +21,8 @@
           <section class="author">By: {{author}} {{publishStatus}}</section>
       </div>
       </header>
-        <section class="project_body">{{{body}}}</section>
-        <a href="#" class="read_on">Read on &rarr;</a>
+        <section class="project-body">{{{body}}}</section>
+        <a href="#" class="read-on">Read on &rarr;</a>
       </article>
     </script>
     <script id="project-template" type="text/x-handlebars-template">
@@ -41,12 +41,12 @@
   <body>
     <main>
       <!-- LOGO SECTION -->
+    <article class="website-title">
     <section class="logo-section">
       <div class="top">
         <a href="#"><img class="logo"></a>
         <!-- <a href="#"><img class="logo" src="img/susanlogo.png"/></a> -->
       </div>
-      <article class="website-title">
         <a class="susanlink" href="#"><h1 class="susanharrison">SUSAN HARRISON</h1></a>
       </article>
       <!-- NAV SECTION -->
