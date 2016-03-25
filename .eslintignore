@@ -1,6 +1,4 @@
 README.md
-.DS_Store
-.eslintrc
-.eslintignore
-LICENSE
-vendor
+vendor/*
+img/*
+readme.md
