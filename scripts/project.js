@@ -1,7 +1,7 @@
 (function(module) {
   //ALL properties of `opts` will be assigned as properies of the newly created project object.
   function Project(opts) {
-    Object.keys(opts).forEach(function(e, index, key){ //please expain?
+    Object.keys(opts).forEach(function(e, index, key){
       this[e] = opts[e];
     },this);
   };
@@ -20,7 +20,7 @@
     return template(this);
   };
 
-//loadAll function collects all projectData and sorts .map puts this in a new sorted Array
+//loadAll function collects all projectData and sorts .map puts this in a new sorted Array and excutes a function
   Project.loadAll = function(data) {
     data.sort(function(a,b){
       return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
@@ -53,47 +53,6 @@
     });
   };
 
-//numWordsAll function returns all the words in the projectData body
-  Project.numWordsAll = function() {
-    return Project.all.map(function(project) {
-      return project.body.match(/\b\w+/g).length;
-      //need rexpress explanation
-    })
-    .reduce(function(a, b) {
-      return a + b;
-    });
-  };
 
-
-//allAuthors function returns the names of all authors without duplicates and pushes to new array
-  Project.allAuthors = function() {
-    return Project.all.map(function(project){
-      return project.author;
-    })
-      .reduce(function(acc,cur){
-        if (acc.indexOf(cur) === -1){
-          acc.push(cur);
-        }
-        return acc;
-      },[]);
-  };
-
-//numWordsByAuthor function returns all prodect words per author
-  Project.numWordsByAuthor = function() {
-    return Project.allAuthors().map(function(author) {
-      return {
-        name: author,
-        numWords: Project.all.filter(function(project){
-          return project.author == author;
-        })
-        .map(function(project) {
-          return project.body.match(/\b\w+/g).length;
-        })
-        .reduce(function(a, b) {
-          return a + b;
-        })
-      };
-    });
-  };
   module.Project = Project;
 })(window);
