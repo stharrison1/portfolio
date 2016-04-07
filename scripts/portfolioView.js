@@ -1,5 +1,5 @@
 (function(module){
-  var portfolioView = {};//empty object gets functions from below passed in it
+  var portfolioView = {};
 
   var render = function(project) {
     var template = Handlebars.compile($('#projectData-template').text());

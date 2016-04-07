@@ -5,6 +5,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   projectsController.index = function() {
     // $('.tab-content').hide();
     // $('#portfolio').fadeIn();
@@ -12,6 +13,8 @@
 =======
 =======
 >>>>>>> refactor
+=======
+>>>>>>> staging
   projectsController.index = function(ctx, next) {
     portfolioView.index(ctx.projects);
   };
@@ -35,9 +38,12 @@
 
     Project.findWhere('category', ctx.params.categoryName, categoryData);
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> refactor
 =======
 >>>>>>> refactor
+=======
+>>>>>>> staging
   };
 
   projectsController.loadAll = function(ctx, next) {
