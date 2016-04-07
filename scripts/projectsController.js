@@ -3,21 +3,6 @@
 
   Project.createTable();  // Ensure the database table is properly initialized
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  projectsController.index = function() {
-    // $('.tab-content').hide();
-    // $('#portfolio').fadeIn();
-    Project.fetchAll(portfolioView.initNewProjectPage);
-=======
-=======
->>>>>>> refactor
-=======
->>>>>>> staging
-=======
->>>>>>> staging
   projectsController.index = function(ctx, next) {
     portfolioView.index(ctx.projects);
   };
@@ -40,16 +25,6 @@
     };
 
     Project.findWhere('category', ctx.params.categoryName, categoryData);
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> refactor
-=======
->>>>>>> refactor
-=======
->>>>>>> staging
-=======
->>>>>>> staging
   };
 
   projectsController.loadAll = function(ctx, next) {
