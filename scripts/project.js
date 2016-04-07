@@ -1,99 +1,115 @@
 (function(module) {
   //ALL properties of `opts` will be assigned as properies of the newly created project object.
   function Project(opts) {
-    Object.keys(opts).forEach(function(e, index, key){ //please expain?
+    Object.keys(opts).forEach(function(e, index, key){
       this[e] = opts[e];
     },this);
   };
 
   Project.all = []; //when .toHtml is called all projectData will be pushed into this array
 
-
-//We define and use the method toHTML for the Project class.
-  Project.prototype.toHtml = function() {
-    //called on portfolioView-71 and 81
-    var template = Handlebars.compile($('#projectData-template').text());
-    this.daysAgo = parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000);
-    this.publishStatus = this.publishedOn ? 'published ' + this.daysAgo + ' days ago' : '(draft)';
-    // this.body = marked(this.body);
-    //WHY DOESN'T THIS WORK?
-    return template(this);
+  Project.createTable = function(callback) {
+    webDB.execute(
+      'CREATE TABLE IF NOT EXISTS projects (' +
+        'id INTEGER PRIMARY KEY, ' +
+        'title VARCHAR(255) NOT NULL, ' +
+        'titleUrl VARCHAR(255) NOT NULL, ' +
+        'category VARCHAR(20), ' +
+        'author VARCHAR(255) NOT NULL, ' +
+        'repoUrl VARCHAR (255), ' +
+        'publishedOn DATETIME, ' +
+        'body TEXT NOT NULL);',
+        callback
+    );
   };
 
-//loadAll function collects all projectData and sorts .map puts this in a new sorted Array
-  Project.loadAll = function(data) {
-    data.sort(function(a,b){
-      return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
-    });
-    Project.all = data.map(function(ele) {
+
+  Project.truncateTable = function(callback) {
+    webDB.execute(
+      'DELETE FROM projects;',
+      callback
+    );
+  };
+
+  Project.prototype.insertRecord = function(callback) {
+    webDB.execute(
+      [
+        {
+          'sql': 'INSERT INTO projects (title, titleUrl, category, author, repoUrl, publishedOn, body) VALUES (?, ?, ?, ?, ?, ?, ?);',
+          'data': [this.title, this.titleUrl, this.category, this.author, this.repoUrl, this.publishedOn, this.body],
+        }
+      ],
+      callback
+    );
+  };
+
+  Project.prototype.deleteRecord = function(callback) {
+    webDB.execute(
+      [
+        {
+          'sql': 'DELETE FROM projects WHERE id = ?;',
+          'data': [this.id]
+        }
+      ],
+      callback
+    );
+  };
+
+  Project.prototype.updateRecord = function(callback) {
+    webDB.execute(
+      [
+        {
+          'sql': 'UPDATE projects SET title = ?, titleUrl = ?, category = ?, author = ?, reporUrl = ?, publishedOn = ?, body = ? WHERE id = ?;',
+          'data': [this.title, this.titleUrl, this.category, this.author, this.repoUrl, this.publishedOn, this.body, this.id]
+        }
+      ],
+      callback
+    );
+  };
+
+  Project.loadAll = function(rows) {
+    Project.all = rows.map(function(ele) {
       return new Project(ele);
     });
   };
 
-//Sets localStorage to during eTag
   Project.fetchAll = function(callback) {
-    $.ajax({
-      type: 'HEAD',//just want header
-      url: 'scripts/projectData.json',
-      success: function(data, message, xhr) {
-        var dataEtag = xhr.getResponseHeader('eTag');
-        if (localStorage.eTag === dataEtag && localStorage.data) {
-          console.log(localStorage.eTag);
-          Project.loadAll(JSON.parse(localStorage.data));//parse so that Javascript can understand
-          callback();
-        } else {
-          localStorage.eTag = dataEtag;
-          $.getJSON('scripts/projectData.json', function(data) {
-            Project.loadAll(data);
-            localStorage.data = JSON.stringify(data);
+    webDB.execute('SELECT * FROM projects ORDER BY publishedOn DESC', function(rows) {
+      if (rows.length) {
+        Project.loadAll(rows);
+        callback();
+      } else {
+        $.getJSON('scripts/projectData.json', function(rawData) {
+          // Cache the json, so we don't need to request it next time:
+          rawData.forEach(function(item) {// Instantiate an article based on item from JSON
+            var project = new Project(item);// Cache the project in DB
+            project.insertRecord();
+          });
+          webDB.execute('SELECT * FROM projects', function(rows) {
+            Project.loadAll(rows);
             callback();
           });
-        }
+        });
       }
     });
   };
 
-//numWordsAll function returns all the words in the projectData body
-  Project.numWordsAll = function() {
-    return Project.all.map(function(project) {
-      return project.body.match(/\b\w+/g).length;
-      //need rexpress explanation
-    })
-    .reduce(function(a, b) {
-      return a + b;
-    });
-  };
-
-
-//allAuthors function returns the names of all authors without duplicates and pushes to new array
-  Project.allAuthors = function() {
-    return Project.all.map(function(project){
-      return project.author;
-    })
-      .reduce(function(acc,cur){
-        if (acc.indexOf(cur) === -1){
-          acc.push(cur);
+  Project.findWhere = function(field, value, callback) {
+    webDB.execute(
+      [
+        {
+          sql: 'SELECT * FROM projects WHERE ' + field + ' = ?;',
+          data: [value]
         }
-        return acc;
-      },[]);
+      ],
+      callback
+    );
   };
 
-//numWordsByAuthor function returns all prodect words per author
-  Project.numWordsByAuthor = function() {
-    return Project.allAuthors().map(function(author) {
-      return {
-        name: author,
-        numWords: Project.all.filter(function(project){
-          return project.author == author;
-        })
-        .map(function(project) {
-          return project.body.match(/\b\w+/g).length;
-        })
-        .reduce(function(a, b) {
-          return a + b;
-        })
-      };
-    });
+  // Example of async, SQL-based approach to getting unique data
+  Project.allCategories = function(callback) {
+    webDB.execute('SELECT DISTINCT category FROM articles;', callback);
   };
+
   module.Project = Project;
 })(window);
