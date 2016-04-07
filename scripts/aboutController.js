@@ -1,7 +1,7 @@
 (function(module) {
   var aboutController = {};
 
-  // Function hides all main section elements, and then reveals just the #about section:
+ //controller function for loading about on index.html, routing handled in routes.js
   aboutController.index = function() {
     repos.requestRepos(repoView.index);
   };

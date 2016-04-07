@@ -1,53 +1,62 @@
 (function(module){
   var portfolioView = {};//empty object gets functions from below passed in it
 
-//added category from ProjectData to OptionTag filter
+  var render = function(project) {
+    var template = Handlebars.compile($('#projectData-template').text());
+
+    project.daysAgo = parseInt((new Date() - new Date(project.publishedOn))/60/60/24/1000);
+    project.publishStatus = project.publishedOn ? 'published ' + project.daysAgo + ' days ago' : '(draft)';
+    project.body = marked(project.body);
+
+    return template(project);
+  };
+
+
   portfolioView.populateFilters = function() {
-    $('article').each(function() {//index 16-26
-      var val = $(this).attr('data-category');//index 16
-      var optionTag = '<option value="' + val + '">' + val + '</option>';
-      if ($('#category-filter option[value="' + val + '"]').length === 0) {
-        $('#category-filter').append(optionTag);
-      }
+    var options,
+      template = Handlebars.compile($('#option-template').text());
+    options = Project.allCategories(function(rows) {
+      if ($('#category-filter option').length < 2){
+        $('#category-filter').append(
+            rows.map(function(row) {
+              return template({val: row.category});
+            })
+        );
+      };
     });
   };
 
-//Filters category-filter when user changes category
-  portfolioView.handleCategoryFilter = function() {
-    $('#category-filter').on('change', function() {
-      if ($(this).val()) {
-        $('article').hide();
-        $('article[data-category="' + $(this).val() + '"]').fadeIn();
-      } else {
-        $('article').fadeIn();
-        $('.template').hide();
-      }
+
+  portfolioView.handleFilters = function() {
+    $('category-filter').on('change', 'select', function() {
+    //grab the id value and then removes the '-filter'.
+      resource = this.id.replace('-filter', '');
+      //change the routes to for example, '/author/author'sname'
+      page('/' + resource + '/' + $(this).val().replace(/\W+/g, '+')); // Replace any/all whitespace with a +
     });
   };
 
-//Shows only 1st two paragraphs of body
-  portfolioView.setTeasers = function() {
-    $('.project-body *:nth-of-type(n+2)').hide();
-//if read-on clicked show content
-    $('#projects a.read-on').on('click', function(event){ //index 25
-      event.preventDefault();
-      $(this).hide();
-      $(this).parent().find('*').show();
-    });
-  };
+  portfolioView.index = function(portfolios) {
 
-//Function called in index.html-82
-//Shows all the functions on the index.html page
-  portfolioView.initIndexPage = function() {
     $('#portfolio').show().siblings().hide();
-    Project.all.forEach(function(a){
-      $('#portfolio').append(a.toHtml());
+
+    $('#portfolio project').remove();
+
+    portfolios.forEach(function(a) {
+      $('#portfolio').append(render(a));
     });
+
     portfolioView.populateFilters();
-    portfolioView.handleCategoryFilter();
-    portfolioView.setTeasers();
+    portfolioView.handleFilters();
+
+    if ($('#portfolio project').length > 1) {
+      $('.project-body *:nth-of-type(n+2)').hide();
+    }
   };
 
+  portfolioView.initAdminPage = function() {
+    var template = Handlebars.compile($('#projectData-template').text());
+  };
 
   module.portfolioView = portfolioView;
 })(window);
