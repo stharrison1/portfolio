@@ -4,11 +4,14 @@
   Project.createTable();  // Ensure the database table is properly initialized
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   projectsController.index = function() {
     // $('.tab-content').hide();
     // $('#portfolio').fadeIn();
     Project.fetchAll(portfolioView.initNewProjectPage);
 =======
+=======
+>>>>>>> refactor
   projectsController.index = function(ctx, next) {
     portfolioView.index(ctx.projects);
   };
@@ -31,6 +34,9 @@
     };
 
     Project.findWhere('category', ctx.params.categoryName, categoryData);
+<<<<<<< HEAD
+>>>>>>> refactor
+=======
 >>>>>>> refactor
   };
 
