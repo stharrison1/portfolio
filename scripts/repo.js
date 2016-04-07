@@ -20,11 +20,5 @@
   };
 
 
-  repos.with = function(attr) {
-    return repos.all.filter(function(repo) {
-      return repo[attr];
-    });
-  };
-
   module.repos = repos;
 })(window);

@@ -1,12 +1,9 @@
 (function(module) {
   var aboutController = {};
 
-  // DONE: Define a function that hides all main section elements, and then reveals just the #about section:
+ //controller function for loading about on index.html, routing handled in routes.js
   aboutController.index = function() {
-    // $('.tab-content').hide();
-    // $('#about').fadeIn();
     repos.requestRepos(repoView.index);
   };
-
   module.aboutController = aboutController;
 })(window);
