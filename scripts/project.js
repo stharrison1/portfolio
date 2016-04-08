@@ -108,7 +108,7 @@
 
   // Example of async, SQL-based approach to getting unique data
   Project.allCategories = function(callback) {
-    webDB.execute('SELECT DISTINCT category FROM articles;', callback);
+    webDB.execute('SELECT DISTINCT category FROM projects;', callback);
   };
 
   module.Project = Project;
