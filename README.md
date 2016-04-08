@@ -1,12 +1,5 @@
 ###301d6 Portfolio Project
-####Susan Harrison
+####Susan Harrison's Portfolio
 
-####Week 1 Day 1
-* Set up HTML framework
-* set up Script to pull data from projectData file and insert into cloned template using jQuery
-* Fixed .eslintrc, NAN error, and added CSS
-
-
-####Week 1 Day 2
-* Set up portfolioView
-* Added category-filter and CSS width to filter
+####Heroku
+* The live site is deployed on Heroku and can be viewed at: https://sharrison-portfolio.herokuapp.com/

@@ -4,8 +4,10 @@
   Project.createTable();  // Ensure the database table is properly initialized
 
   projectsController.index = function(ctx, next) {
+    $('#portfolio').html('');
     portfolioView.index(ctx.projects);
   };
+
 
   projectsController.loadById = function(ctx, next) {
     var projectData = function(project) {
