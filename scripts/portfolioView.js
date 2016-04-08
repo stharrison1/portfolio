@@ -3,11 +3,9 @@
 
   var render = function(project) {
     var template = Handlebars.compile($('#projectData-template').text());
-
     project.daysAgo = parseInt((new Date() - new Date(project.publishedOn))/60/60/24/1000);
     project.publishStatus = project.publishedOn ? 'published ' + project.daysAgo + ' days ago' : '(draft)';
     project.body = marked(project.body);
-
     return template(project);
   };
 
@@ -37,11 +35,8 @@
   };
 
   portfolioView.index = function(portfolios) {
-
     $('#portfolio').show().siblings().hide();
-
-    $('#portfolio project').remove();
-
+    $('#portfolio projects').remove();
     portfolios.forEach(function(a) {
       $('#portfolio').append(render(a));
     });
@@ -54,9 +49,6 @@
     }
   };
 
-  portfolioView.initAdminPage = function() {
-    var template = Handlebars.compile($('#projectData-template').text());
-  };
 
   module.portfolioView = portfolioView;
 })(window);
